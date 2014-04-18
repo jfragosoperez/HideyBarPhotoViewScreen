@@ -6,7 +6,7 @@ import com.hideybarphotoviewscreen.utils.HideyBarPhotoViewScreenExtras;
 
 /**
  * This class enables to create an Intent with basic setup to start {@link com.hideybarphotoviewscreen.HideyBarPhotoViewScreen} activity.
- * This is not a mandatory param, but will be really useful for most of the cases when we want a simple base setup.
+ * This is not a must, but will be really useful for most of the cases when we want a simple base setup.
  */
 public class HideyBarPhotoViewIntent {
 
