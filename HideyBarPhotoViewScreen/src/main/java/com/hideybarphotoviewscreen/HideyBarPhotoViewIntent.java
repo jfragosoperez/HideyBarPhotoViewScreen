@@ -114,7 +114,7 @@ public class HideyBarPhotoViewIntent {
          */
         public Intent createIntent() {
             if (photoSourceSetup == null) {
-                throw new IllegalArgumentException("You must set the photo source, using methods setPhotoUrl() or setPhotoResourceId()");
+                throw new IllegalArgumentException("The is no photo to load. You must set the photo source, using methods setPhotoUrl() or setPhotoResourceId()");
             }
             hideyBarPhotoViewIntent = new Intent();
             addPhotoSourceSetUp();
@@ -124,7 +124,6 @@ public class HideyBarPhotoViewIntent {
         }
 
         private void addPhotoSourceSetUp() {
-
             if (photoSourceSetup.isDrawableResIdSetup()) {
                 final PhotoDrawableResourceSetup photoDrawableResourceSetup = (PhotoDrawableResourceSetup) hideyBarPhotoViewScreenSetUp.photoSourceSetup;
                 hideyBarPhotoViewIntent.putExtra(HideyBarPhotoViewScreenExtras.PICTURE_RES_ID,
@@ -167,10 +166,10 @@ public class HideyBarPhotoViewIntent {
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
     ////// PHOTO SOURCE
-    private static final int PHOTO_SOURCE_TYPE_DRAWABLE_RESOURCE_ID = 0;
-    private static final int PHOTO_SOURCE_TYPE_URL = 1;
-
     private abstract class PhotoSourceSetup {
+        protected static final int PHOTO_SOURCE_TYPE_DRAWABLE_RESOURCE_ID = 0;
+        protected static final int PHOTO_SOURCE_TYPE_URL = 1;
+
         private final int sourceType;
 
         protected PhotoSourceSetup(int sourceType) {
