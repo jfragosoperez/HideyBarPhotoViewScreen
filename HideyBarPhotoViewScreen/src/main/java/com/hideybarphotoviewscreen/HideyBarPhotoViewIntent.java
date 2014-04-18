@@ -1,7 +1,10 @@
 package com.hideybarphotoviewscreen;
 
+import android.content.Context;
 import android.content.Intent;
 
+import com.hideybarphotoviewscreen.photoloader.PhotoLoader;
+import com.hideybarphotoviewscreen.photoloader.PicassoPhotoLoader;
 import com.hideybarphotoviewscreen.utils.HideyBarPhotoViewScreenExtras;
 import com.hideybarphotoviewscreen.utils.PictureUtils;
 
@@ -36,7 +39,7 @@ public class HideyBarPhotoViewIntent {
 
     /**
      * Class which handles the setup of the intent to start {@link com.hideybarphotoviewscreen.HideyBarPhotoViewScreen}.
-     * This class is based on a builder, so make your setup calling the methods you want and finally call {@link #create()}
+     * This class is based on a builder, so make your setup calling the methods you want and finally call {@link #create(android.content.Context, Class)}
      * in order to obtain the intent created.
      */
     public class HideyBarPhotoViewScreenSetUp {
@@ -50,7 +53,7 @@ public class HideyBarPhotoViewIntent {
          * Sets the resource id of the drawable that will be displayed in the photo view of the screen.
          *
          * @param resourceId is the resource id of the drawable that will be displayed in the photo view screen.
-         * @return the setup, so we can go on with the setup and finally create the intent using {@link #create()}.
+         * @return the setup, so we can go on with the setup and finally create the intent using {@link #create(android.content.Context, Class)}.
          */
         public HideyBarPhotoViewScreenSetUp setPhotoResourceId(final int resourceId) {
             hideyBarPhotoViewScreenSetUp.photoSourceSetup = new PhotoDrawableResourceSetup(resourceId);
@@ -60,7 +63,7 @@ public class HideyBarPhotoViewIntent {
         /**
          * Sets the url of the photo that will be displayed in the {@link com.hideybarphotoviewscreen.HideyBarPhotoViewScreen}
          *
-         * @param photoUrl is the url of the photo that we want to display in the {@link com.hideybarphotoviewscreen.HideyBarPhotoViewScreen}
+         * @param photoUrl    is the url of the photo that we want to display in the {@link com.hideybarphotoviewscreen.HideyBarPhotoViewScreen}
          * @param photoLoader is the type of loader that will be used to load the photo.
          * @return the photo url setup so we can set the preferred photo loader.
          */
@@ -91,7 +94,7 @@ public class HideyBarPhotoViewIntent {
          * to hide it once after the user has touched the picture of the screen and due to this fact the ActionBar was visible.
          *
          * @param timeToStartHideyMode is the time to start "HideyMode" of the ActionBar.
-         * @return the setup, so we can go on with the setup and finally create the intent using {@link #create()}.
+         * @return the setup, so we can go on with the setup and finally create the intent using {@link #create(android.content.Context, Class)}.
          */
         public HideyBarPhotoViewScreenSetUp setTimeToStartHideyMode(float timeToStartHideyMode) {
             hideyBarModeTimeSetup.setNewTime(timeToStartHideyMode);
@@ -102,7 +105,7 @@ public class HideyBarPhotoViewIntent {
          * Sets the title that will appear as the title in the ActionBar of the screen.
          *
          * @param title is the title that will appear as the title in the ActionBar of the screen.
-         * @return the setup, so we can go on with the setup and finally create the intent using {@link #create()}.
+         * @return the setup, so we can go on with the setup and finally create the intent using {@link #create(android.content.Context, Class)}.
          */
         public HideyBarPhotoViewScreenSetUp setScreenTitle(final String title) {
             this.screenTitle = title;
@@ -112,13 +115,16 @@ public class HideyBarPhotoViewIntent {
         /**
          * Creates an Intent (configured with the setup) ready to be started with {@link android.content.Context#startActivity(android.content.Intent)}
          *
+         * @param context is the context from which we will start this intent.
+         * @param hideyBarPhotoViewScreenClass is the name of the class that inherits from the {@link com.hideybarphotoviewscreen.HideyBarPhotoViewScreen} activity.
+         *
          * @return an Intent (configured with the setup) ready to be started with {@link android.content.Context#startActivity(android.content.Intent)}
          */
-        public Intent create() {
+        public Intent create(final Context context, Class<? extends HideyBarPhotoViewScreen> hideyBarPhotoViewScreenClass) {
             if (photoSourceSetup == null) {
                 throw new IllegalArgumentException("The is no photo to load. You must set the photo source, using methods setPhotoUrl() or setPhotoResourceId()");
             }
-            hideyBarPhotoViewIntent = new Intent();
+            hideyBarPhotoViewIntent = new Intent(context, hideyBarPhotoViewScreenClass);
             addPhotoSourceSetUp();
             addHideyBarTimeSetUp();
             addTitleSetUp();
@@ -136,17 +142,17 @@ public class HideyBarPhotoViewIntent {
                 final PhotoUrlSetup photoUrlSetup = (PhotoUrlSetup) hideyBarPhotoViewScreenSetUp.photoSourceSetup;
                 hideyBarPhotoViewIntent.putExtra(HideyBarPhotoViewScreenExtras.PICTURE_URL,
                         photoUrlSetup.url);
-                if(photoUrlSetup.hasPicassoLoader()) {
-                    PicassoPhotoLoader picassoPhotoLoader = (PicassoPhotoLoader)photoUrlSetup.photoLoader;
+                if (photoUrlSetup.hasPicassoLoader()) {
+                    PicassoPhotoLoader picassoPhotoLoader = (PicassoPhotoLoader) photoUrlSetup.photoLoader;
                     hideyBarPhotoViewIntent.putExtra(HideyBarPhotoViewScreenExtras.SHOW_LOADING_PROGRESS,
-                            picassoPhotoLoader.willShowProgressView);
-                    if(!PictureUtils.isUnusedPictureResID(picassoPhotoLoader.errorDrawableResId)){
+                            picassoPhotoLoader.needsToDisplayProgressView());
+                    if (!PictureUtils.isUnusedPictureResID(picassoPhotoLoader.getErrorDrawableResId())) {
                         hideyBarPhotoViewIntent.putExtra(HideyBarPhotoViewScreenExtras.PicassoPhotoLoader.ERROR_DRAWABLE_RES_ID,
-                                picassoPhotoLoader.errorDrawableResId);
+                                picassoPhotoLoader.getErrorDrawableResId());
                     }
-                    if(!PictureUtils.isUnusedPictureResID(picassoPhotoLoader.placeHolderResId)){
+                    if (!PictureUtils.isUnusedPictureResID(picassoPhotoLoader.getPlaceHolderResId())) {
                         hideyBarPhotoViewIntent.putExtra(HideyBarPhotoViewScreenExtras.PicassoPhotoLoader.PLACE_HOLDER_DRAWABLE_RES_ID,
-                                picassoPhotoLoader.placeHolderResId);
+                                picassoPhotoLoader.getPlaceHolderResId());
                     }
                 }
             }
@@ -199,21 +205,22 @@ public class HideyBarPhotoViewIntent {
             this.url = url;
         }
 
-        private boolean hasPicassoLoader(){
-            return photoLoader.photoLoaderType == PhotoLoader.TYPE_PICASSO_LOADER;
+        private boolean hasPicassoLoader() {
+            return photoLoader.isPicassoPhotoLoader();
         }
 
         /**
          * Creates a new Picasso Loader so we are able to set up it.
-         * @return a new instance of {@link com.hideybarphotoviewscreen.HideyBarPhotoViewIntent.PicassoPhotoLoader}
+         *
+         * @return a new instance of {@link com.hideybarphotoviewscreen.photoloader.PicassoPhotoLoader}
          */
-        public PicassoPhotoLoader newPicassoLoader(){
+        public PicassoPhotoLoader newPicassoLoader() {
             PicassoPhotoLoader picassoPhotoLoader = new PicassoPhotoLoader();
             setPhotoLoader(picassoPhotoLoader);
-            return (PicassoPhotoLoader)photoLoader;
+            return (PicassoPhotoLoader) photoLoader;
         }
 
-        private void setPhotoLoader(PhotoLoader photoLoader){
+        private void setPhotoLoader(PhotoLoader photoLoader) {
             this.photoLoader = photoLoader;
         }
 
@@ -225,70 +232,6 @@ public class HideyBarPhotoViewIntent {
         protected PhotoDrawableResourceSetup(final int drawableResID) {
             super(PHOTO_SOURCE_TYPE_DRAWABLE_RESOURCE_ID);
             this.drawableResID = drawableResID;
-        }
-
-    }
-
-    ///////////////////////////////////////////////////
-    ///////////////////////////////////////////////////
-    ////// PHOTO LOADERS
-    /**
-     * Abstract super class photo loader.
-     */
-    public class PhotoLoader{
-        protected final static int TYPE_PICASSO_LOADER = 0;
-
-        private int photoLoaderType;
-
-        protected PhotoLoader(final int photoLoaderType){
-            this.photoLoaderType = photoLoaderType;
-        }
-    }
-
-    /**
-     * Photo loader that uses Picasso from (Square).
-     */
-    public class PicassoPhotoLoader extends PhotoLoader{
-        private int placeHolderResId = PictureUtils.unusedPictureResID(), errorDrawableResId = PictureUtils.unusedPictureResID();
-        private boolean willShowProgressView;
-
-        private PicassoPhotoLoader() {
-            super(TYPE_PICASSO_LOADER);
-        }
-
-        /**
-         * This base setup will show a progress view while the photo is being loaded.
-         * If you want to set a placeholder or an error drawable, apply them after calling this method.
-         * @return the same loader with the new setup.
-         */
-        public PicassoPhotoLoader baseSetup(){
-            this.willShowProgressView = true;
-            return this;
-        }
-        /**
-         * Sets the resource id of the drawable we want to display while the photo is being loaded.
-         * If you want to set a placeholder or an error drawable, apply them after calling this method.
-         * @return the same loader with the new setup.
-         */
-        public PicassoPhotoLoader setPlaceHolderResId(final int placeHolderResId){
-            this.placeHolderResId = placeHolderResId;
-            return this;
-        }
-        /**
-         * Sets the resource id of the drawable we want to display if there is an error while trying to load the photo.
-         * @return the same loader with the new setup.
-         */
-        public PicassoPhotoLoader setErrorDrawableResId(final int errorDrawableResId){
-            this.errorDrawableResId = errorDrawableResId;
-            return this;
-        }
-        /**
-         * Call this method if you want to show a progress view while the photo is being loaded.
-         * @return the same loader with the new setup.
-         */
-        public PicassoPhotoLoader showProgressView(final boolean willShowProgressView){
-            this.willShowProgressView = willShowProgressView;
-            return this;
         }
 
     }
