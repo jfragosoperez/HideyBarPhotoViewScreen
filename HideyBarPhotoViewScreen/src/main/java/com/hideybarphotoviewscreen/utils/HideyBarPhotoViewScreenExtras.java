@@ -10,4 +10,9 @@ public final class HideyBarPhotoViewScreenExtras {
     public static final String PICTURE_RES_ID = "PICTURE_RES_ID";
     public static final String SHOW_LOADING_PROGRESS = "SHOW_LOADING_PROGRESS";
     public static final String SCREEN_TITLE = "SCREEN_TITLE";
+
+    public static final class PicassoPhotoLoader{
+        public static final String ERROR_DRAWABLE_RES_ID = "PLACE_HOLDER_DRAWABLE_RES_ID";
+        public static final String PLACE_HOLDER_DRAWABLE_RES_ID = "PLACE_HOLDER_DRAWABLE_RES_ID";
+    }
 }
