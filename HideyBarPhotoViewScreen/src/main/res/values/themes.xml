@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="_AppTheme" parent="android:Theme.Holo.Light.DarkActionBar" />
+
+    <style name="AppTheme_ActionBarOverlay" parent="@style/_AppTheme">
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
+</resources>

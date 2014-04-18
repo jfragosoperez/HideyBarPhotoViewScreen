@@ -1,1 +1,1 @@
-include ':HideyBarPhotoViewScreen'
+include ':HideyBarPhotoViewScreen', ':HideyBarPhotoViewSample'
