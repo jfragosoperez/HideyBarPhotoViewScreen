@@ -35,7 +35,9 @@ public class HideyBarPhotoViewIntent {
     }
 
     /**
-     * Class which handles the setup of the intent to start {@link com.hideybarphotoviewscreen.HideyBarPhotoViewScreen}-
+     * Class which handles the setup of the intent to start {@link com.hideybarphotoviewscreen.HideyBarPhotoViewScreen}.
+     * This class is based on a builder, so make your setup calling the methods you want and finally call {@link #create()}
+     * in order to obtain the intent created.
      */
     public class HideyBarPhotoViewScreenSetUp {
 
@@ -48,7 +50,7 @@ public class HideyBarPhotoViewIntent {
          * Sets the resource id of the drawable that will be displayed in the photo view of the screen.
          *
          * @param resourceId is the resource id of the drawable that will be displayed in the photo view screen.
-         * @return the setup, so we can go on with the setup and finally create the intent using {@link #createIntent()}.
+         * @return the setup, so we can go on with the setup and finally create the intent using {@link #create()}.
          */
         public HideyBarPhotoViewScreenSetUp setPhotoResourceId(final int resourceId) {
             hideyBarPhotoViewScreenSetUp.photoSourceSetup = new PhotoDrawableResourceSetup(resourceId);
@@ -89,7 +91,7 @@ public class HideyBarPhotoViewIntent {
          * to hide it once after the user has touched the picture of the screen and due to this fact the ActionBar was visible.
          *
          * @param timeToStartHideyMode is the time to start "HideyMode" of the ActionBar.
-         * @return the setup, so we can go on with the setup and finally create the intent using {@link #createIntent()}.
+         * @return the setup, so we can go on with the setup and finally create the intent using {@link #create()}.
          */
         public HideyBarPhotoViewScreenSetUp setTimeToStartHideyMode(float timeToStartHideyMode) {
             hideyBarModeTimeSetup.setNewTime(timeToStartHideyMode);
@@ -100,7 +102,7 @@ public class HideyBarPhotoViewIntent {
          * Sets the title that will appear as the title in the ActionBar of the screen.
          *
          * @param title is the title that will appear as the title in the ActionBar of the screen.
-         * @return the setup, so we can go on with the setup and finally create the intent using {@link #createIntent()}.
+         * @return the setup, so we can go on with the setup and finally create the intent using {@link #create()}.
          */
         public HideyBarPhotoViewScreenSetUp setScreenTitle(final String title) {
             this.screenTitle = title;
@@ -112,7 +114,7 @@ public class HideyBarPhotoViewIntent {
          *
          * @return an Intent (configured with the setup) ready to be started with {@link android.content.Context#startActivity(android.content.Intent)}
          */
-        public Intent createIntent() {
+        public Intent create() {
             if (photoSourceSetup == null) {
                 throw new IllegalArgumentException("The is no photo to load. You must set the photo source, using methods setPhotoUrl() or setPhotoResourceId()");
             }
@@ -230,7 +232,6 @@ public class HideyBarPhotoViewIntent {
     ///////////////////////////////////////////////////
     ///////////////////////////////////////////////////
     ////// PHOTO LOADERS
-
     /**
      * Abstract super class photo loader.
      */
