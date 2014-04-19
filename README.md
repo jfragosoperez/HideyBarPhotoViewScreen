@@ -19,4 +19,22 @@ Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
         startActivity(hideyBarPhotoViewIntent);
 ```
 
+## Screenshots:
+
+![Screenshot library status 0](screenshots/status0.png)
+![Screenshot library status 1](screenshots/status1.png)
+![Screenshot library status 2](screenshots/status2.png)
+
+## Libraries:
+
+[**Picasso (Square)**](http://square.github.io/picasso/).
+[**PhotoView from Chris Banes**](https://github.com/chrisbanes/PhotoView)
+
+## Photographies:
+
+Photographs have been captured by Romain Guy.
+
+## NOTE: 
+
+This library needs some unit testing. I'll do in my free time. Pull requests and new features will be always welcome.
   
