@@ -53,7 +53,8 @@ Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
                 .timeToStartHideyMode(4000)
                 .screenTitle("Reunion")
                 .create(this, HideyBarPhotoViewScreen.class);
-        startActivity(hideyBarPhotoViewIntent);
+
+startActivity(hideyBarPhotoViewIntent);
 ```
 
 **Sample of static picture request:**
@@ -64,7 +65,8 @@ Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
                 .timeToStartHideyMode(3000)
                 .screenTitle("Grand Sunset")
                 .create(this, HideyBarPhotoViewScreen.class);
-        startActivity(hideyBarPhotoViewIntent);
+
+startActivity(hideyBarPhotoViewIntent);
 ```
 
 ## Screenshots:
