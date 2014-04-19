@@ -24,7 +24,7 @@ The zoom of the pictures is handled by [**PhotoView from Chris Banes**](https://
 
 -Register your activity into the manifest setting your theme. Your theme must have windowActionOverlay in true.
 
-**Activity:
+**Activity:**
 ```xml
 <activity
             android:name="com.hideybarphotoviewscreen.HideyBarPhotoViewScreen"
@@ -33,7 +33,7 @@ The zoom of the pictures is handled by [**PhotoView from Chris Banes**](https://
         </activity>
 ```
 
-**Theme:
+**Theme:**
 ```xml
 <style name="_AppTheme" parent="android:Theme.Holo.Light.DarkActionBar" />
 
