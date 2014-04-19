@@ -1,7 +1,19 @@
 HideyBarPhotoViewScreen
 =======================
 
-This library has been created for showing pictures like the native pictures gallery does. The screen actionbar will be hidden once the user enters the screen and after the time you've set has been reached. Then, once the actionbar is displayed again, it will be hidden again when the user taps the photo view.
+This library has been created for the need of showing photos like the native pictures gallery does. 
+
+The current behaviour to show pictures in Gallery in Android is saving the picture into the phone and then call an Intent with ACTION_VIEW and the user will be redirected to the Gallery and will be able to see the picture.
+
+Sometimes, we only want to display that picture in full screen and would like to open that picture without leaving our app and all without saving this picture in the device.
+
+The gallery hides the action bar in two cases:
+
+1-The user enters in the photo view screen and after X seconds the actionbar will be hidden.
+
+2-Once hidden, the users taps the photo so the actionbar becomes visible and being able to perform actions using the menu items. Then after the X seconds, the actionbar will be hidden again.
+
+In this library you can set up the time till the actionbar will be hides.
    
 You can load both pictures from resources or fetch a picture from an url using [**Picasso (Square)**](http://square.github.io/picasso/).
 
