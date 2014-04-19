@@ -5,6 +5,9 @@ This library has been created for showing pictures like the native pictures gall
    
 You can load both pictures from resources or fetch a picture from an url using [**Picasso (Square)**](http://square.github.io/picasso/).
 
+The zoom of the pictures is handled by [**PhotoView from Chris Banes**](https://github.com/chrisbanes/PhotoView)
+
+
 **Sample of request:**
 
 ```java
