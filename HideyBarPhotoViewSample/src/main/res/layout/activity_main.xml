@@ -3,12 +3,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:padding="16dp">
 
-    <Button android:id="@+id/startDefaultBtt"
+    <Button android:id="@+id/startPhotoFromResourcesBtt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start"
+        android:text="PHOTO FROM RESOURCES"
+        android:textAllCaps="true"/>
+
+    <Button android:id="@+id/startPhotoFromUrlBtt"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:text="PHOTO FROM URL"
+        android:textAllCaps="true"/>
+    <Button android:id="@+id/startPhotoFromUrlWithPlaceHolder"
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:text="photo from url with placeholder"
         android:textAllCaps="true"/>
 
 </LinearLayout>

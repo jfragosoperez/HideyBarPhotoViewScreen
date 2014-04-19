@@ -96,7 +96,7 @@ public class HideyBarPhotoViewIntent {
          * @param timeToStartHideyMode is the time to start "HideyMode" of the ActionBar.
          * @return the setup, so we can go on with the setup and finally create the intent using {@link #create(android.content.Context, Class)}.
          */
-        public HideyBarPhotoViewScreenSetUp setTimeToStartHideyMode(float timeToStartHideyMode) {
+        public HideyBarPhotoViewScreenSetUp timeToStartHideyMode(long timeToStartHideyMode) {
             hideyBarModeTimeSetup.setNewTime(timeToStartHideyMode);
             return this;
         }
@@ -107,7 +107,7 @@ public class HideyBarPhotoViewIntent {
          * @param title is the title that will appear as the title in the ActionBar of the screen.
          * @return the setup, so we can go on with the setup and finally create the intent using {@link #create(android.content.Context, Class)}.
          */
-        public HideyBarPhotoViewScreenSetUp setScreenTitle(final String title) {
+        public HideyBarPhotoViewScreenSetUp screenTitle(final String title) {
             this.screenTitle = title;
             return this;
         }
@@ -241,13 +241,13 @@ public class HideyBarPhotoViewIntent {
     ////// HIDEY BAR
     private final class HideyBarModeTimeSetup {
         private static final int START_HIDEY_MODE_DEFAULT_TIME = 2000;
-        private float timeToStartHideyBar;
+        private long timeToStartHideyBar;
 
         private HideyBarModeTimeSetup() {
             this.timeToStartHideyBar = START_HIDEY_MODE_DEFAULT_TIME;
         }
 
-        private void setNewTime(float newTimeToStartHideyBar) {
+        private void setNewTime(long newTimeToStartHideyBar) {
             this.timeToStartHideyBar = newTimeToStartHideyBar;
         }
     }

@@ -12,6 +12,6 @@ public final class PictureUtils {
     }
 
     public static boolean isUnusedPictureResID(int pictureResID){
-        return NO_DRAWABLE_RES_ID == NO_DRAWABLE_RES_ID;
+        return pictureResID == NO_DRAWABLE_RES_ID;
     }
 }
