@@ -20,6 +20,28 @@ You can load both pictures from resources or fetch a picture from an url using [
 The zoom of the pictures is handled by [**PhotoView from Chris Banes**](https://github.com/chrisbanes/PhotoView)
 
 
+##Usage
+
+-Register your activity into the manifest setting your theme. Your theme must have windowActionOverlay in true.
+
+**Activity:
+```xml
+<activity
+            android:name="com.hideybarphotoviewscreen.HideyBarPhotoViewScreen"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme_ActionBarOverlay">
+        </activity>
+```
+
+**Theme:
+```xml
+<style name="_AppTheme" parent="android:Theme.Holo.Light.DarkActionBar" />
+
+    <style name="AppTheme_ActionBarOverlay" parent="@style/_AppTheme">
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
+```
+
 **Sample of request fetching picture from url:**
 
 ```java
