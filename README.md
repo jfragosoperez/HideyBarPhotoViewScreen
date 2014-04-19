@@ -28,6 +28,7 @@ Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
 ## Libraries:
 
 [**Picasso (Square)**](http://square.github.io/picasso/).
+
 [**PhotoView from Chris Banes**](https://github.com/chrisbanes/PhotoView)
 
 ## Photographies:
