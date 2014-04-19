@@ -71,9 +71,7 @@ startActivity(hideyBarPhotoViewIntent);
 
 ## Screenshots:
 
-![Screenshot library status 0](screenshots/status0.png)
-![Screenshot library status 1](screenshots/status1.png)
-![Screenshot library status 2](screenshots/statuszoom.png)
+![Screenshot library status 0](screenshots/all_screenshots.png)
 
 ## Libraries:
 
