@@ -79,7 +79,7 @@ startActivity(hideyBarPhotoViewIntent);
 
 [**PhotoView from Chris Banes**](https://github.com/chrisbanes/PhotoView)
 
-## Photographies:
+## Photography:
 
 Photographs have been captured by Romain Guy.
 
