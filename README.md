@@ -8,7 +8,7 @@ You can load both pictures from resources or fetch a picture from an url using [
 The zoom of the pictures is handled by [**PhotoView from Chris Banes**](https://github.com/chrisbanes/PhotoView)
 
 
-**Sample of request:**
+**Sample of request fetching picture from url:**
 
 ```java
 Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
@@ -18,6 +18,17 @@ Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
                                 .showProgressView(false))
                 .timeToStartHideyMode(4000)
                 .screenTitle("Reunion")
+                .create(this, HideyBarPhotoViewScreen.class);
+        startActivity(hideyBarPhotoViewIntent);
+```
+
+**Sample of static picture request:**
+
+````java
+Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
+                .setPhotoResourceId(R.drawable.grand_sunset)
+                .timeToStartHideyMode(3000)
+                .screenTitle("Grand Sunset")
                 .create(this, HideyBarPhotoViewScreen.class);
         startActivity(hideyBarPhotoViewIntent);
 ```
