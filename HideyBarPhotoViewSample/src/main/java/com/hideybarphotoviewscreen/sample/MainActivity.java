@@ -67,7 +67,7 @@ public final class MainActivity extends Activity {
         Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
                 .setPhotoUrl("https://lh6.googleusercontent.com/-dJgpQyZK89k/UQOBedpoASI/AAAAAAAALuk/kWhI3-xIX1w/w1902-h1070-no/reunion.jpg",
                         new PicassoPhotoLoader().baseSetup()
-                                .setPlaceHolderResId(R.drawable.ic_launcher)
+                                .setPlaceHolderResId(R.drawable.ic_hidey_bar_photo_view_screen_placeholder)
                                 .showProgressView(false))
                 .timeToStartHideyMode(4000)
                 .screenTitle("Reunion")
