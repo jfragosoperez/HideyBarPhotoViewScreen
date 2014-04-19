@@ -7,13 +7,13 @@ The current behaviour to show pictures in Gallery in Android is saving the pictu
 
 Sometimes, we only want to display that picture in full screen and would like to open that picture without leaving our app and all without saving this picture in the device.
 
-The gallery hides the action bar in two cases:
+The native app of the Android gallery hides the action bar in two cases:
 
 1-The user enters in the photo view screen and after X seconds the actionbar will be hidden.
 
 2-Once hidden, the users taps the photo so the actionbar becomes visible and being able to perform actions using the menu items. Then after the X seconds, the actionbar will be hidden again.
 
-In this library you can set up the time till the actionbar will be hides.
+In this library you can set up the time till the actionbar hides.
    
 You can load both pictures from resources or fetch a picture from an url using [**Picasso (Square)**](http://square.github.io/picasso/).
 
