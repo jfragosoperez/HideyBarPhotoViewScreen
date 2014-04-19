@@ -3,7 +3,7 @@ HideyBarPhotoViewScreen
 
 This library has been created for the need of showing photos like the native pictures gallery does. 
 
-The current behaviour to show pictures in Gallery in Android is saving the picture into the phone and then call an Intent with ACTION_VIEW and the user will be redirected to the Gallery and will be able to see the picture.
+The current behaviour to show pictures in Gallery in Android is saving the picture into the phone and then call an Intent with ACTION_VIEW. After that, the user will be redirected to the Gallery and will be able to see the picture.
 
 Sometimes, we only want to display that picture in full screen and would like to open that picture without leaving our app and all without saving this picture in the device.
 
