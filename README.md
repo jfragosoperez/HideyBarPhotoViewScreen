@@ -24,9 +24,11 @@ The zoom of the pictures is handled by [**PhotoView from Chris Banes**](https://
 
 -Add library dependency in your build.gradle file:
 
-	dependencies {
-		compile 'com.github.jfragosoperez:hideybarphotoviewscreen:1.0'
-	}}
+```groovy
+dependencies{
+	compile 'com.github.jfragosoperez:hideybarphotoviewscreen:1.0'
+}
+```
 
 -Register your activity into the manifest setting your theme. Your theme must have windowActionOverlay in true.
 
