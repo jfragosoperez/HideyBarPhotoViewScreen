@@ -2,7 +2,7 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 18
-    buildToolsVersion "19.0.3"
+    buildToolsVersion '19.0.3'
 
     defaultConfig {
         minSdkVersion 11
@@ -19,6 +19,7 @@ android {
 }
 
 dependencies {
-    compile project(':HideyBarPhotoViewScreen')
     compile fileTree(dir: 'libs', include: ['*.jar'])
+//        compile 'com.github.jfragosoperez:hideybarphotoviewscreen:1.0'
+    compile project(':HideyBarPhotoViewScreen')
 }
