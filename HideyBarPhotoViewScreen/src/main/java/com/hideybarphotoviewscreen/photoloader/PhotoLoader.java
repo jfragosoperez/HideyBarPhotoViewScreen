@@ -24,12 +24,13 @@ package com.hideybarphotoviewscreen.photoloader;
 ///////////////////////////////////////////////////
 ////// PHOTO LOADERS
 
-import com.hideybarphotoviewscreen.utils.PictureUtils;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Abstract super class photo loader.
  */
-public class PhotoLoader{
+public abstract class PhotoLoader implements Parcelable {
     protected final static int TYPE_PICASSO_LOADER = 0;
 
     private int photoLoaderType;
@@ -41,4 +42,22 @@ public class PhotoLoader{
     public boolean isPicassoPhotoLoader(){
         return photoLoaderType == TYPE_PICASSO_LOADER;
     }
+
+
+    /////////////////////////////////////////////
+    ////// PARCEL SETUP
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.photoLoaderType);
+    }
+
+    protected PhotoLoader(Parcel in) {
+        this.photoLoaderType = in.readInt();
+    }
+
 }
