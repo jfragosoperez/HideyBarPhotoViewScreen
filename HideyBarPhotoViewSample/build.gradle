@@ -19,5 +19,6 @@ android {
 }
 
 dependencies {
-    compile project(':HideyBarPhotoViewScreen')
+//    compile project(':HideyBarPhotoViewScreen')
+    compile 'com.github.jfragosoperez:hideybarphotoviewscreen:1.1'
 }

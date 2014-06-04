@@ -26,7 +26,7 @@ The zoom of the pictures is handled by [**PhotoView from Chris Banes**](https://
 
 ```groovy
 dependencies{
-	compile 'com.github.jfragosoperez:hideybarphotoviewscreen:1.0'
+	compile 'com.github.jfragosoperez:hideybarphotoviewscreen:1.1'
 }
 ```
 
