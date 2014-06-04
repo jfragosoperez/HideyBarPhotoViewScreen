@@ -90,7 +90,7 @@ startActivity(hideyBarPhotoViewIntent);
 
 ## Screenshots:
 
-![Screenshot library status 0](screenshots/all_screenshots.png)
+![HideyBar flow gif](screenshots/1401879446296.gif)
 
 ## Libraries:
 
