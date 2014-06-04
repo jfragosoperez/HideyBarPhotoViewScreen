@@ -23,12 +23,10 @@ package com.hideybarphotoviewscreen.photoloader;
 
 import com.hideybarphotoviewscreen.utils.PictureUtils;
 
-import android.os.Parcel;
-
 /**
  * Photo loader that uses Picasso (from Square).
  */
-public class PicassoPhotoLoader extends PhotoLoader implements android.os.Parcelable {
+public class PicassoPhotoLoader extends PhotoLoader{
     private int placeHolderResId = PictureUtils.unusedPictureResID();
     private int errorDrawableResId = PictureUtils.unusedPictureResID();
     private boolean willShowProgressView;
@@ -91,36 +89,4 @@ public class PicassoPhotoLoader extends PhotoLoader implements android.os.Parcel
         return errorDrawableResId;
     }
 
-
-    /////////////////////////////////////////////
-    ////// PARCEL SETUP
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        super.writeToParcel(dest, flags);
-        dest.writeInt(this.placeHolderResId);
-        dest.writeInt(this.errorDrawableResId);
-        dest.writeByte(willShowProgressView ? (byte) 1 : (byte) 0);
-    }
-
-    private PicassoPhotoLoader(Parcel in) {
-        super(in);
-        this.placeHolderResId = in.readInt();
-        this.errorDrawableResId = in.readInt();
-        this.willShowProgressView = in.readByte() != 0;
-    }
-
-    public static Creator<PicassoPhotoLoader> CREATOR = new Creator<PicassoPhotoLoader>() {
-        public PicassoPhotoLoader createFromParcel(Parcel source) {
-            return new PicassoPhotoLoader(source);
-        }
-
-        public PicassoPhotoLoader[] newArray(int size) {
-            return new PicassoPhotoLoader[size];
-        }
-    };
 }

@@ -43,7 +43,9 @@ public class HideyBarPhotoViewScreen extends Activity {
     ////// EXTRAS
     private long timeToStartHideyBarMode;
     private String pictureUrl, title;
-    private int photoResId, photoPlaceHolderResId, photoErrorDrawableResId;
+    private int photoResId;
+    private int photoPlaceHolderResId;
+    private int photoErrorDrawableResId;
     private boolean showLoadingProgress;
 
     ////////////////////////////////////////////
@@ -52,7 +54,9 @@ public class HideyBarPhotoViewScreen extends Activity {
     private View progressView;
     private ImageView picturePhotoView;
 
-    private boolean loadPictureFromUrlMode, displayPlaceHolder, displayErrorDrawable;
+    private boolean loadPictureFromUrlMode;
+    private boolean displayPlaceHolder;
+    private boolean displayErrorDrawable;
 
     ////////////////////////////////////////////
     ////////////////////////////////////////////
@@ -82,7 +86,7 @@ public class HideyBarPhotoViewScreen extends Activity {
         }
     }
 
-    private final void setUpParamsFromExtras(){
+    private void setUpParamsFromExtras(){
         Bundle extras = getIntent().getExtras();
         if(extras != null){
             title = extras.getString(HideyBarPhotoViewScreenExtras.SCREEN_TITLE);
@@ -111,14 +115,12 @@ public class HideyBarPhotoViewScreen extends Activity {
         }
     }
 
-    private final void findViews(){
+    private void findViews(){
         progressView = findViewById(R.id.progressView);
         picturePhotoView = (ImageView) findViewById(R.id.picturePhotoView);
     }
 
-    private final void setUpPhotoView(){
-        mPhotoViewAttacher = new PhotoViewAttacher(picturePhotoView);
-        mPhotoViewAttacher.setOnPhotoTapListener(new PhotoTapListener());
+    private void setUpPhotoView(){
         if(isStaticPicture()){
             hideProgressView();
             setUpPhotoFromResource();
@@ -127,17 +129,17 @@ public class HideyBarPhotoViewScreen extends Activity {
         }
     }
 
-    private final boolean isStaticPicture(){
+    private boolean isStaticPicture(){
         return !loadPictureFromUrlMode;
     }
 
-    private final void setUpPhotoFromResource(){
+    private void setUpPhotoFromResource(){
         picturePhotoView.setImageResource(photoResId);
-        showPhotoView();
+        addPhotoViewAttacherAndTapListener();
         runHideActionBarTimer();
     }
 
-    private final void setUpPhotoFromUrl(){
+    private void setUpPhotoFromUrl(){
         RequestCreator requestCreator = Picasso.with(this)
                 .load(pictureUrl);
 
@@ -155,7 +157,7 @@ public class HideyBarPhotoViewScreen extends Activity {
                     @Override
                     public void onSuccess() {
                         hideProgressView();
-                        showPhotoView();
+                        addPhotoViewAttacherAndTapListener();
                         runHideActionBarTimer();
                     }
 
@@ -166,25 +168,26 @@ public class HideyBarPhotoViewScreen extends Activity {
                 });
     }
 
-    private final void hideProgressView() {
+    private void hideProgressView() {
         if (progressView != null) {
             progressView.setVisibility(View.GONE);
         }
     }
 
-    private final boolean displayPlaceHolderNeeded(){
+    private boolean displayPlaceHolderNeeded(){
         return displayPlaceHolder;
     }
 
-    private final boolean displayErrorDrawableNeeded(){
+    private boolean displayErrorDrawableNeeded(){
         return displayErrorDrawable;
     }
 
-    private final void showPhotoView() {
-        picturePhotoView.setVisibility(View.VISIBLE);
+    private void addPhotoViewAttacherAndTapListener() {
+        mPhotoViewAttacher = new PhotoViewAttacher(picturePhotoView);
+        mPhotoViewAttacher.setOnPhotoTapListener(new PhotoTapListener());
     }
 
-    private final void runHideActionBarTimer() {
+    private void runHideActionBarTimer() {
         hideActionBarHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -207,10 +210,9 @@ public class HideyBarPhotoViewScreen extends Activity {
     /**
      * Detects and toggles actionbarOverlay mode (also known as "hidey bar" mode).
      */
-    public final void toggleShowOrHideHideyBarMode() {
+    public void toggleShowOrHideHideyBarMode() {
 
-        int uiOptions = getWindow().getDecorView().getSystemUiVisibility();
-        int newUiOptions = uiOptions;
+        int newUiOptions = getWindow().getDecorView().getSystemUiVisibility();
 
         if (!isNavigationHidden) {
             if(Build.VERSION.SDK_INT >= 14) {
