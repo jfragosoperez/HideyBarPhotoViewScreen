@@ -50,7 +50,7 @@ dependencies{
 </style>
 ```
 
-**Sample of request fetching picture from url:**
+**Sample of request fetching picture from url (custom photo loader setup):**
 
 ```java
 Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
@@ -62,6 +62,17 @@ Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
                 .screenTitle("Reunion")
                 .create(this, HideyBarPhotoViewScreen.class);
 
+startActivity(hideyBarPhotoViewIntent);
+```
+
+**Sample of request fetching picture from url (default photo loader setup):**
+
+```java
+Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
+                .setPhotoUrl("https://lh6.googleusercontent.com/-Zku6vhdOOMU/UMop6mAjrCI/AAAAAAAAMRw/FLEcVVoZ-BY/w1648-h1098-no/Delicate+Arch.jpg")
+                .timeToStartHideyMode(2000)
+                .screenTitle("Delicate Arch")
+                .create(this, HideyBarPhotoViewScreen.class);
 startActivity(hideyBarPhotoViewIntent);
 ```
 
