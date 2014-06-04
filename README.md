@@ -88,7 +88,7 @@ Intent hideyBarPhotoViewIntent = HideyBarPhotoViewIntent.newConfiguration()
 startActivity(hideyBarPhotoViewIntent);
 ```
 
-## Screenshots:
+## "HideyBar" mode flow:
 
 ![HideyBar flow gif](screenshots/1401879446296.gif)
 
